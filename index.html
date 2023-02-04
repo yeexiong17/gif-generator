@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <img src="">
+    <input type="text" class="input-name" placeholder="Find a gif">
+    <button class="btn-1">Generate</button>
+
+    <script>
+        const img = document.querySelector('img');
+        const btn1 = document.querySelector(".btn-1");
+
+        btn1.addEventListener('click', generate);
+
+        function generate() {
+
+            let userInput = document.querySelector(".input-name").value;
+
+            fetch(`https://api.giphy.com/v1/gifs/translate?api_key=HFgs9SQCe4JbzLQZZxd00TZt1FnfHns2&s=${userInput}`, { mode: 'cors' })
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (response) {
+                    if (response.data) {
+                        img.src = response.data.images.original.url;
+                    }
+                    else {
+                        throw new Error("No gif found, please enter again");
+                    }
+                })
+                .catch(function (error) {
+                    img.src = "https://media.istockphoto.com/id/1255635032/vector/doodle-sketch-question-marks-set-inside-speech-bubbles.jpg?s=612x612&w=0&k=20&c=MUO3m5gx33HeX68MGzlULDKos_96l3BHd4zMmOmGmUo=";
+                    img.alt = "No gif found";
+                });
+        }
+    </script>
+
+</body>
+
+</html>
