@@ -21,7 +21,7 @@
 
             let userInput = document.querySelector(".input-name").value;
 
-            fetch(`https://api.giphy.com/v1/gifs/translate?api_key=HFgs9SQCe4JbzLQZZxd00TZt1FnfHns2&s=${userInput}`, { mode: 'cors' })
+            fetch(`https://api.giphy.com/v1/gifs/translate?api_key=YOUR-API-KEY&s=${userInput}`, { mode: 'cors' })
                 .then(function (response) {
                     return response.json();
                 })
